@@ -30,7 +30,6 @@ class DailyNews1(Parser, ABC):
             return second_title
         return first_title
 
-
     @classmethod
     def get_data(cls) -> list[News]:
         all_news: list[News] = []
@@ -45,5 +44,5 @@ class DailyNews1(Parser, ABC):
                 url=url.get("href")
             )
             all_news.append(news_obj.text)
-        for i in all_news:
-            return i
+            for i in all_news:
+                return i

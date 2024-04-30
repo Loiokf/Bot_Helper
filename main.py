@@ -14,6 +14,7 @@ from MessageText import HELP_COMMAND, HELLO_TEXT, ABOUT_US
 from WeatherCity import GetWeatherCity
 from WeatherCoords import GetWeatherCoords
 from DailyNews import DailyNews1
+from Finance import GetInfoAboutRate
 
 import logging
 
@@ -73,11 +74,12 @@ async def news_command(message: types.Message):
     try:
         await message.answer(DailyNews1.get_data())
     except:
-        return "К сожелению, сейчас нет свежих новостей. Обратитесь позднее."
+        await message.answer("К сожелению, сейчас нет свежих новостей. Обратитесь позднее.")
 
-"""@dp.message_handler(lambda message: message.text == 'Курсы валют')
+
+@dp.message_handler(lambda message: message.text == 'Курсы валют')
 async def rate_handler(message: types.Message):
-    await message.answer('')"""
+    await message.answer(GetInfoAboutRate.get_currency_rates())
 
 
 @dp.message_handler(lambda message: message.text == 'Погода по городу')
@@ -135,7 +137,6 @@ async def weather_command(message: types.Message, state: FSMContext):
         logging.error(f'weather_command {message.from_user.id}-{message.from_user.first_name} -> {message.text}')
     finally:
         await state.finish()
-
 
 
 if __name__ == '__main__':
