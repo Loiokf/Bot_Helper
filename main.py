@@ -98,7 +98,7 @@ async def cancel_handler(message: types.Message, state: FSMContext):
     if current_state is None:
         return
     await state.finish()
-    await message.reply('ОК')
+    await message.reply('Хорошо')
 
 
 @dp.message_handler(state='*', commands='cancel')
