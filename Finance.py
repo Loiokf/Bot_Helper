@@ -1,5 +1,5 @@
-import datetime
 import requests
+import datetime
 import xml.etree.ElementTree as ET
 from datetime import date
 
@@ -33,7 +33,6 @@ class GetInfoAboutRate:
 
 
 def get_currency_rates():
-    # Формируем URL запроса
     url = "http://www.cbr.ru/scripts/XML_daily.asp"
     params = {
         "date_req": date.today().strftime("%d/%m/%Y")
