@@ -25,6 +25,7 @@ class GetInfoAboutRate:
             if code in ["USD", "EUR", "CNY", "JPY"]:
                 rate = valute.find("Value").text
                 currency_rates[code] = float(rate.replace(",", "."))
+        self.result.append(f"Курсы валют на сегодняшний день: {datetime.datetime.now().strftime('%H:%M %d-%m-%Y')}")
         self.result.append("USD: {:.2f} RUB".format(currency_rates["USD"]))
         self.result.append("EUR: {:.2f} RUB".format(currency_rates["EUR"]))
         self.result.append("CNY: {:.2f} RUB".format(currency_rates["CNY"]))
