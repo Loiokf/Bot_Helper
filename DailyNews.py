@@ -46,5 +46,4 @@ class DailyNews1(Parser, ABC):
                 url=url.get("href")
             )
             all_news.append(news_obj.text)
-        return all_news
-        print(news_obj)
+        print(*all_news)
