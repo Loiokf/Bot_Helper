@@ -8,6 +8,8 @@ from aiogram.utils import executor
 from aiogram import Bot, types
 from config import bot_token
 import sqlite3 as sq
+import datetime
+from datetime import date
 # from Finance import GetInfoAboutRate
 
 from MessageText import HELP_COMMAND, HELLO_TEXT, ABOUT_US
@@ -79,6 +81,7 @@ async def news_command(message: types.Message):
 
 @dp.message_handler(lambda message: message.text == 'Курсы валют')
 async def rate_handler(message: types.Message):
+    await message.answer(f"Курсы валют на сегодняшний день: ({datetime.datetime.now().strftime('%Y-%m-%d %H:%M')}")
     await message.answer(GetInfoAboutRate.get_currency_rates())
 
 
