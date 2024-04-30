@@ -65,6 +65,7 @@ async def process_help_command(message: types.Message):
         parse_mode='HTML'
     )
 
+
 @dp.message_handler(lambda message: message.text == 'Новости')
 async def news_command(message: types.Message):
     await message.answer(DailyNews1.get_data())
@@ -85,7 +86,8 @@ async def weather_handler(message: types.Message):
 @dp.message_handler(lambda message: message.text == 'Погода по координатам')
 async def weather_handler(message: types.Message):
     await WeatherFormCoords.coords.set()
-    await message.answer("Введите координаты через запятую (нужны первые 6 цифр после запятой, иначе данные будут не такими точными, какими могли быть :) )")
+    await message.answer(
+        "Введите координаты через запятую (нужны первые 6 цифр после запятой, иначе данные будут не такими точными, какими могли быть :) )")
 
 
 @dp.message_handler(lambda message: message.text == 'Назад', state='*', )
