@@ -8,6 +8,7 @@ from aiogram.utils import executor
 from aiogram import Bot, types
 from config import bot_token
 import sqlite3 as sq
+from Finance import GetInfoAboutRate
 
 from MessageText import HELP_COMMAND, HELLO_TEXT, ABOUT_US
 from WeatherCity import GetWeatherCity
@@ -136,21 +137,11 @@ async def weather_command(message: types.Message, state: FSMContext):
 
 @dp.message_handler(state=RateForm.rate_symbol)
 async def rate_command(message: types.Message, state: FSMContext):
-    symbol = message.text.replace(' ', '').upper()
-    conn = sq.connect("bot_helper.db")
-    cur = conn.cursor()
     try:
-        cur.execute(f"SELECT rate_text, sum_rub FROM Rates WHERE rate_symbol = '{symbol}'")
-        for rate in cur.fetchall():
-            await bot.send_message(message.from_id, f'{rate[0]} в рублях = {rate[1]}')
-            break
+        await message.answer(GetInfoAboutRate.get_data())
     except:
-        logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.INFO)
-        logging.error(f'rate_command {message.from_user.id}-{message.from_user.first_name} -> {symbol}')
         await message.answer('Простите но вы ввели несуществующий символ')
-    finally:
-        conn.close()
-        await state.finish()
+
 
 
 if __name__ == '__main__':
