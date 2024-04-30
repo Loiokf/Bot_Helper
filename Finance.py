@@ -1,4 +1,4 @@
-from bs4 import BeautifulSoup
+"""from bs4 import BeautifulSoup
 from urllib.request import urlopen
 from models import Parser, Rate, ABC
 
@@ -32,4 +32,5 @@ class GetInfoAboutRate(Parser, ABC):
                 sum_rub=cost
             )
             all_cur.append(rate.text)
-        return all_cur
+        return all_cur"""
+
