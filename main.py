@@ -70,8 +70,10 @@ async def process_help_command(message: types.Message):
 @dp.message_handler(lambda message: message.text == 'Новости')
 async def news_command(message: types.Message):
     await message.answer("Поиск новостей может занять пару минут...")
-    await message.answer(DailyNews1.get_data())
-
+    try:
+        await message.answer(DailyNews1.get_data())
+    except:
+        return "К сожелению, сейчас нет свежих новостей. Обратитесь позднее."
 
 @dp.message_handler(lambda message: message.text == 'Курсы валют')
 async def rate_handler(message: types.Message):
