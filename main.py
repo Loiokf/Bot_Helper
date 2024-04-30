@@ -82,7 +82,8 @@ async def news_command(message: types.Message):
 @dp.message_handler(lambda message: message.text == 'Курсы валют')
 async def rate_handler(message: types.Message):
     await message.answer(f"Курсы валют на сегодняшний день: {datetime.datetime.now().strftime('%H:%M %d-%m-%Y')}")
-    await message.answer(GetInfoAboutRate.get_currency_rates())
+    data = GetInfoAboutRate()
+    await message.answer("\n".join(data.get_currency_rates()))
 
 
 @dp.message_handler(lambda message: message.text == 'Погода по городу')
