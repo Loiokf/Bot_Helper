@@ -35,7 +35,7 @@ class GetInfoAboutRate(Parser, ABC):
             all_cur.append(rate)
         return all_cur
 
-    @classmethod
+""" @classmethod
     def to_db(cls) -> None:
         rates: list[Rate] = cls.get_data()
         conn = sq.connect("bot_helper.db")
@@ -49,4 +49,4 @@ class GetInfoAboutRate(Parser, ABC):
 
     @classmethod
     def table_name(cls) -> str:
-        return 'Rates'
+        return 'Rates'"""

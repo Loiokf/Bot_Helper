@@ -12,6 +12,7 @@ import sqlite3 as sq
 from MessageText import HELP_COMMAND, HELLO_TEXT, ABOUT_US
 from WeatherCity import GetWeatherCity
 from WeatherCoords import GetWeatherCoords
+from DailyNews import DailyNews1
 
 import logging
 
@@ -20,7 +21,7 @@ dp = Dispatcher(bot, storage=MemoryStorage())
 logger = logging.getLogger(__name__)
 keyboard = ReplyKeyboardMarkup(resize_keyboard=True)
 buttons = ['Помощь', 'Новости', 'Курсы валют', 'Погода по городу', 'Погода по координатам', 'Назад', 'О нас']
-photo_BOT = InputFile("assets/bot.png")
+photo_BOT = InputFile("bot.png")
 keyboard.add(*buttons)
 
 
@@ -64,27 +65,15 @@ async def process_help_command(message: types.Message):
         parse_mode='HTML'
     )
 
-"""
 @dp.message_handler(lambda message: message.text == 'Новости')
 async def news_command(message: types.Message):
-    conn = sq.connect("finnews.db")
-    cur = conn.cursor()
-    try:
-        cur.execute('SELECT title, text, url FROM FinNews')
-        for news in cur.fetchall():
-            news_obj = f'\t{news[0]}\n{news[1]}\nИсточник: {news[2]}'
-            await bot.send_message(message.from_id, news_obj)
-    except:
-        logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.INFO)
-        logging.error(f'news_command {message.from_user.id}-{message.from_user.first_name}')
-    finally:
-        conn.close()
+    await message.answer(DailyNews1.get_data())
 
 
 @dp.message_handler(lambda message: message.text == 'Курсы валют')
 async def rate_handler(message: types.Message):
     await RateForm.rate_symbol.set()
-    await message.answer('Введите символ валюты')"""
+    await message.answer('Введите символ валюты')
 
 
 @dp.message_handler(lambda message: message.text == 'Погода по городу')
