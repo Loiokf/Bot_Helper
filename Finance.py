@@ -1,7 +1,6 @@
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 from models import Parser, Rate, ABC
-import sqlite3 as sq
 
 
 def tag_to_string(obj):
@@ -34,19 +33,3 @@ class GetInfoAboutRate(Parser, ABC):
             )
             all_cur.append(rate.text)
         return all_cur
-
-""" @classmethod
-    def to_db(cls) -> None:
-        rates: list[Rate] = cls.get_data()
-        conn = sq.connect("bot_helper.db")
-        cur = conn.cursor()
-        for rate in rates:
-            sql_request = f"INSERT INTO Rates(rate_text, rate_symbol, sum_rub) " \
-                          f"VALUES('{rate.rate_text}', '{rate.rate_symbol}', {rate.sum_rub})"
-            cur.execute(sql_request)
-            conn.commit()
-        conn.close()
-
-    @classmethod
-    def table_name(cls) -> str:
-        return 'Rates'"""

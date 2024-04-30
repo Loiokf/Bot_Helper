@@ -136,12 +136,11 @@ async def weather_command(message: types.Message, state: FSMContext):
 
 
 @dp.message_handler(state=RateForm.rate_symbol)
-async def rate_command(message: types.Message, state: FSMContext):
+async def rate_command(message: types.Message):
     try:
         await message.answer(GetInfoAboutRate.get_data())
     except:
         await message.answer('Простите но вы ввели несуществующий символ')
-
 
 
 if __name__ == '__main__':
