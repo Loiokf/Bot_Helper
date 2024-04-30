@@ -1,4 +1,4 @@
-"""from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup
 from urllib.request import urlopen
 from models import Parser, Rate, ABC
 
@@ -32,17 +32,4 @@ class GetInfoAboutRate(Parser, ABC):
                 sum_rub=cost
             )
             all_cur.append(rate.text)
-        return all_cur"""
-
-import requests
-from bs4 import BeautifulSoup
-
-url = 'https://www.rbc.ru/'
-response = requests.get(url)
-soup = BeautifulSoup(response.text, 'lxml')
-
-# Находим блок с курсами валют
-currency_block = soup.find('span', class_='inline-quote__value')
-currency_value = currency_block.text.strip()
-
-print('Курс доллара на сайте rbc.ru:', currency_value)
+        return all_cur

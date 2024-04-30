@@ -29,8 +29,7 @@ class DailyNews1(Parser, ABC):
         if first_title == str():
             return second_title
         return first_title
-        print(first_title)
-        print(second_title)
+
 
     @classmethod
     def get_data(cls) -> list[News]:
