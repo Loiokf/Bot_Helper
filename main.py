@@ -73,7 +73,7 @@ async def news_command(message: types.Message):
     try:
         await message.answer(DailyNews1.get_data())
     except:
-        return "К сожелению, сейчас нет свежих новостей. Обратитесь позднее."
+        await message.answer("К сожелению, сейчас нет свежих новостей. Обратитесь позднее.")
 
 """@dp.message_handler(lambda message: message.text == 'Курсы валют')
 async def rate_handler(message: types.Message):
