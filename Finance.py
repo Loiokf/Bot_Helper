@@ -32,7 +32,7 @@ class GetInfoAboutRate(Parser, ABC):
                 rate_symbol=cur_obj[0][4:len(cur_obj[0]) - 5],
                 sum_rub=cost
             )
-            all_cur.append(rate)
+            all_cur.append(rate.text)
         return all_cur
 
 """ @classmethod
