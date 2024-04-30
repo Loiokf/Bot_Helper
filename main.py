@@ -8,7 +8,7 @@ from aiogram.utils import executor
 from aiogram import Bot, types
 from config import bot_token
 import sqlite3 as sq
-from Finance import GetInfoAboutRate
+# from Finance import GetInfoAboutRate
 
 from MessageText import HELP_COMMAND, HELLO_TEXT, ABOUT_US
 from WeatherCity import GetWeatherCity
@@ -74,8 +74,7 @@ async def news_command(message: types.Message):
 
 @dp.message_handler(lambda message: message.text == 'Курсы валют')
 async def rate_handler(message: types.Message):
-    await RateForm.rate_symbol.set()
-    await message.answer('Введите символ валюты')
+    await message.answer('')
 
 
 @dp.message_handler(lambda message: message.text == 'Погода по городу')
@@ -134,13 +133,6 @@ async def weather_command(message: types.Message, state: FSMContext):
     finally:
         await state.finish()
 
-
-@dp.message_handler(state=RateForm.rate_symbol)
-async def rate_command(message: types.Message):
-    try:
-        await message.answer(GetInfoAboutRate.get_data())
-    except:
-        await message.answer('Простите но вы ввели несуществующий символ')
 
 
 if __name__ == '__main__':
